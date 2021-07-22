@@ -15,7 +15,7 @@ class TodoViewModel {
     
     var todoArray = [CellViewModel]()
     weak var delegate: DoRefreshTable?
-
+// get data
     public func fetchTodoList() {
         APIParsing.shared.getDataFromtodoList { [weak self] result in
 
@@ -32,5 +32,11 @@ class TodoViewModel {
             }
         }
     }
+// post data
+    public func postInList(insertData: String ) {
+        JsonForPost.shared.AddInTodoList(addData: insertData)
+        
+    }
+    
     
 }
