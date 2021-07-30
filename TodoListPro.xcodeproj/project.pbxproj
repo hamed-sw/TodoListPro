@@ -22,6 +22,7 @@
 		FA869CB426A9E77B00C988E3 /* Supporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA869CB326A9E77B00C988E3 /* Supporter.swift */; };
 		FA869CB626A9E7B100C988E3 /* APIPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA869CB526A9E7B100C988E3 /* APIPost.swift */; };
 		FA869CB826A9E7C500C988E3 /* APIDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA869CB726A9E7C500C988E3 /* APIDelete.swift */; };
+		FAEF7C7826B027680077F97B /* AddInToTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FA869CB326A9E77B00C988E3 /* Supporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supporter.swift; sourceTree = "<group>"; };
 		FA869CB526A9E7B100C988E3 /* APIPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPost.swift; sourceTree = "<group>"; };
 		FA869CB726A9E7C500C988E3 /* APIDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDelete.swift; sourceTree = "<group>"; };
+		FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInToTodoListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				FA869C9126A9E28300C988E3 /* ViewController.swift */,
+				FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				FA869CB826A9E7C500C988E3 /* APIDelete.swift in Sources */,
 				FA869CAF26A9E3CD00C988E3 /* TodoListTableViewCell.swift in Sources */,
 				FA869CB426A9E77B00C988E3 /* Supporter.swift in Sources */,
+				FAEF7C7826B027680077F97B /* AddInToTodoListViewController.swift in Sources */,
 				FA869CB626A9E7B100C988E3 /* APIPost.swift in Sources */,
 				FA869C9226A9E28300C988E3 /* ViewController.swift in Sources */,
 				FA869CB226A9E6E000C988E3 /* Array+Extenstion.swift in Sources */,

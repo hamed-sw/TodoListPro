@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController{
+    
 
      lazy var viewModel = TodoViewModel()
     let indicator = UIActivityIndicatorView(style: .large)
@@ -16,6 +17,7 @@ class ViewController: UIViewController{
     // Create TableView anonymus clouser patern here
     private let tableView: UITableView = {
         let table = UITableView()
+        
         table.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.identifire)
         return table
         
@@ -31,24 +33,31 @@ class ViewController: UIViewController{
         view.backgroundColor = .systemBackground
         connection()
         buttonAdding()
-       // forRefreshing()
+        forRefreshing()
+    
         
    
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection()
-        buttonAdding()
     }
+
+    
     func buttonAdding() {
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+       let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+       
         navigationItem.rightBarButtonItems = [button]
        // forRefreshing()
 
     }
     @objc func addItem() {
-        viewModel.forAddingIntoTodoList(viewController: self)
-        forRefreshing()
+//        viewModel.forAddingIntoTodoList(viewController: self)
+//        forRefreshing()
+        let vc = AddInToTodoListViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     func forRefreshing() {
         tableView.refreshControl = UIRefreshControl()
