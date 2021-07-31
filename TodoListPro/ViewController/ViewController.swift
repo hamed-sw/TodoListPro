@@ -29,18 +29,21 @@ class ViewController: UIViewController{
         viewModel.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        title = "List"
         view.backgroundColor = .systemBackground
         connection()
         buttonAdding()
         forRefreshing()
-    
-        
-   
+        navigationConfig()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection()
+    }
+
+    func navigationConfig() {
+        title = "List"
+        let nav = navigationController?.navigationBar
+        nav?.backgroundColor = .gray
     }
 
     
@@ -55,9 +58,10 @@ class ViewController: UIViewController{
 //        viewModel.forAddingIntoTodoList(viewController: self)
 //        forRefreshing()
         let vc = AddInToTodoListViewController()
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+       // let navVC = UINavigationController(rootViewController: vc)
+        //navVC.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     func forRefreshing() {
         tableView.refreshControl = UIRefreshControl()

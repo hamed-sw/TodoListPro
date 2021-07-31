@@ -7,36 +7,60 @@
 
 import UIKit
 
-class AddInToTodoListViewController: UIViewController {
+class AddInToTodoListViewController: UIViewController,UITextFieldDelegate {
     
-    private let addLabel:UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.backgroundColor = .black
-        label.textAlignment = .center
-        return label
+    lazy var viewModel = PostViewModel()
+    let lab = UILabel()
+
+//    private let addLabel:UILabel = {
+//        let label = UILabel()
+//        label.font = .systemFont(ofSize: 20, weight: .bold)
+//        label.backgroundColor = .white
+//        label.textAlignment = .center
+//        label.numberOfLines = 0
+//        label.layer.cornerRadius = 52
+//        //label.frame = CGRect(x: 5, y: 5, width: 100, height: 30)
+//        return label
+//    }()
+    
+    private let addTextField: UITextField = {
+        let tex = UITextField()
+        tex.font = .systemFont(ofSize: 20)
+        tex.backgroundColor = .white
+        tex.textAlignment = .center
+        tex.text = "Write here...!"
+        tex.textColor = .lightGray
+        return tex
     }()
-    
+        
     private let button: UIButton = {
        let  butt = UIButton()
         butt.backgroundColor = .white
         butt.setTitle("add", for: .normal)
         butt.setTitleColor(.black, for: .normal)
-        butt.layer.cornerRadius = 52
+        butt.layer.cornerRadius = 10
+        butt.frame = CGRect(x: 100, y: 600, width: UIScreen.main.bounds.width - 200, height: 30)
         return butt
     }()
     
     //let button = UIButton()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
-        view.addSubview(addLabel)
-        view.addSubview(button)
-        title = " Enter what you want"
-        frame()
-        dismissButton()
-        //buttonTap()
+        addTextField.delegate = self
+        view.backgroundColor = .systemGray
+        createStackview(lab: addTextField, button: button)
+        buttonTap()
+        configration()
+    }
+    
+    func configration(){
+        view.addSubview(lab)
+        lab.text = " this is for add in to todo list"
+        lab.font = UIFont.boldSystemFont(ofSize: 36)
+        lab.textAlignment = .center
+        lab.numberOfLines = 0
+        lab.adjustsFontSizeToFitWidth = true
+        setTitleLableConstraints()
 
     }
     // Dismiss button
@@ -48,44 +72,39 @@ class AddInToTodoListViewController: UIViewController {
     }
     //button
     func buttonTap() {
-        button.addTarget(self, action: #selector(didtapbutton), for: .touchUpInside)
+      button.addTarget(self, action: #selector(didtapbutton), for: .touchUpInside)
     }
     
     @objc func didtapbutton() {
-        dismiss(animated: true, completion: nil)
-    }
-
-    
-    func frame() {
-        addLabel.frame = CGRect(x: 5, y: 5, width: 40, height: 20)
-        button.frame = CGRect(x: 5, y: 30, width: 40, height: 20)
+     
+        viewModel.enteryTextfield(textField: addTextField, viewController: self)
 
     }
-//    func viewFor() -> UIView {
-//        let theView = UIView(frame: CGRect(x: 50, y: 200, width: 300 , height: 500))
-//        theView.backgroundColor = .blue
-//        addLabel.frame = CGRect(x: 5, y: 5, width: view.frame.size.width - 20, height: view.frame.size.height/25)
-//        //button.frame = CGRect(x: 100, y: 250, width: 150, height: 50)
-//
-//        theView.addSubview(addLabel)
-//       // theStackView.addSubview(button)
-//
-//        return theView
-//
-//    }
     
-    
- 
-    
-    //    func buttonAdding() {
-    //        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
-    //        navigationItem.rightBarButtonItems = [button]
-    //       // forRefreshing()
-    //
-    //    }
-    //    @objc func addItem() {
-    //        viewModel.forAddingIntoTodoList(viewController: self)
-    //        forRefreshing()
-    //    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if addTextField.textColor == UIColor.lightGray {
+            addTextField.text = nil
+            addTextField.textColor = UIColor.black
+        }
+    }
+    func createStackview(lab:UITextField, button:UIButton) {
+        let stackView = UIStackView(arrangedSubviews: [lab,button])
+        view.addSubview(stackView)
+
+        stackView.frame = CGRect(x: 50, y: 200, width: UIScreen.main.bounds.width - 100, height: 150)
+
+        stackView.backgroundColor = .systemGray
+        //config
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 20
+    }
+
+    func setTitleLableConstraints() {
+       lab.translatesAutoresizingMaskIntoConstraints = false
+       lab.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+       lab.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
+       lab.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
+   }
 
 }
