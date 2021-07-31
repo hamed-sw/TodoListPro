@@ -33,12 +33,7 @@ class TodoViewModel {
             }
         }
     }
-//................................................................................
-// post data
-    public func postInList(insertData: String ) {
-        JsonForPost.shared.AddInTodoList(addData: insertData)
-        
-    }
+
 //...............................................................................
  // delete data
     public func deleteFormList(the id: String){
@@ -53,20 +48,20 @@ class TodoViewModel {
     
     
    // Adding in to TodoList By Alertaction.
-    func forAddingIntoTodoList(viewController: UIViewController) {
-        let alert = UIAlertController(title: "In TodoList", message: "plesae add something you need!", preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.placeholder = " Enter in here...."
-        }
-        let action = UIAlertAction(title: "Add", style: .default) { _ in
-            guard let addlist = alert.textFields?.first?.text else {
-                return
-            }
-            self.postInList(insertData: addlist)
-        }
-        alert.addAction(action)
-        viewController.present(alert, animated: true)
-    }
+//    func forAddingIntoTodoList(viewController: UIViewController) {
+//        let alert = UIAlertController(title: "In TodoList", message: "plesae add something you need!", preferredStyle: .alert)
+//        alert.addTextField { textField in
+//            textField.placeholder = " Enter in here...."
+//        }
+//        let action = UIAlertAction(title: "Add", style: .default) { _ in
+//            guard let addlist = alert.textFields?.first?.text else {
+//                return
+//            }
+//            //self.postInList(insertData: addlist)
+//        }
+//        alert.addAction(action)
+//        viewController.present(alert, animated: true)
+//    }
     
     
   

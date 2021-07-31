@@ -23,6 +23,7 @@
 		FA869CB626A9E7B100C988E3 /* APIPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA869CB526A9E7B100C988E3 /* APIPost.swift */; };
 		FA869CB826A9E7C500C988E3 /* APIDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA869CB726A9E7C500C988E3 /* APIDelete.swift */; };
 		FAEF7C7826B027680077F97B /* AddInToTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */; };
+		FAEF7C7A26B5467F0077F97B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C7926B5467F0077F97B /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		FA869CB526A9E7B100C988E3 /* APIPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPost.swift; sourceTree = "<group>"; };
 		FA869CB726A9E7C500C988E3 /* APIDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDelete.swift; sourceTree = "<group>"; };
 		FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInToTodoListViewController.swift; sourceTree = "<group>"; };
+		FAEF7C7926B5467F0077F97B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				FA869CA626A9E30300C988E3 /* ViewModel.swift */,
 				FA869CA826A9E31A00C988E3 /* CellViewModel.swift */,
+				FAEF7C7926B5467F0077F97B /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				FA869CB426A9E77B00C988E3 /* Supporter.swift in Sources */,
 				FAEF7C7826B027680077F97B /* AddInToTodoListViewController.swift in Sources */,
 				FA869CB626A9E7B100C988E3 /* APIPost.swift in Sources */,
+				FAEF7C7A26B5467F0077F97B /* PostViewModel.swift in Sources */,
 				FA869C9226A9E28300C988E3 /* ViewController.swift in Sources */,
 				FA869CB226A9E6E000C988E3 /* Array+Extenstion.swift in Sources */,
 				FA869C8E26A9E28300C988E3 /* AppDelegate.swift in Sources */,
