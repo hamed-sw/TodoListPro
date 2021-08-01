@@ -49,14 +49,11 @@ class ViewController: UIViewController{
     
     func buttonAdding() {
        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
-       
         navigationItem.rightBarButtonItems = [button]
        // forRefreshing()
 
     }
     @objc func addItem() {
-//        viewModel.forAddingIntoTodoList(viewController: self)
-//        forRefreshing()
         let vc = AddInToTodoListViewController()
        // let navVC = UINavigationController(rootViewController: vc)
         //navVC.modalPresentationStyle = .fullScreen
@@ -107,24 +104,28 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, DoRefreshTa
         return viewModel.todoArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.identifire,for: indexPath) as? TodoListTableViewCell else { fatalError() }
+        
         cell.configure(with: viewModel.todoArray[indexPath.row])
         
+        cell.buttonTapCallBack = {
+            self.viewModel.forDeletOneByOne(indexPath: indexPath, tableView: tableView)
+            self.tableView.reloadData()
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 70
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-             let index = viewModel.todoArray[indexPath.row].subName
-            let theDeletOpetion = viewModel.takeIdFromUrl(at: index)
-            self.viewModel.deleteFormList(the: theDeletOpetion)
-            self.viewModel.todoArray.remove(at: indexPath.row)
+            self.viewModel.forDeletOneByOne(indexPath: indexPath, tableView: tableView)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadData()
         }
     }
+
 }

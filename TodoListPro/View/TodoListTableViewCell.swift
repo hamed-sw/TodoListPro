@@ -11,12 +11,19 @@ class TodoListTableViewCell: UITableViewCell {
     
     // register our cell to the table
     static let identifire = "TodoListTableViewCell"
+    var buttonTapCallBack: () -> () = {}
+//    let button: UIButton = {
+//         let btn = UIButton()
+//         btn.setTitle("Button", for: .normal)
+//         btn.backgroundColor = .systemPink
+//         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//         return btn
+//     }()
     
     // create Label for todoList
     private let todoLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 25, weight: .medium)
-        
         return label
     }()
     // create Label for todoList
@@ -27,6 +34,13 @@ class TodoListTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let button: UIButton = {
+        let buttton = UIButton()
+        buttton.setTitleColor(.black, for: .normal)
+        buttton.setImage(UIImage(systemName: "trash"), for: .normal)
+        return buttton
+    }()
+    
     // initionalize the table for the tableview
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,7 +48,15 @@ class TodoListTableViewCell: UITableViewCell {
         // all supview add to in content view
         contentView.addSubview(todoLabel)
         contentView.addSubview(subName)
+        contentView.addSubview(button)
+        button.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
+
+    @objc private func tapButton() {
+        print("i am tap ")
+        buttonTapCallBack()
+    }
+    
     
     // need for requird Initializer
     required init?(coder: NSCoder) {
@@ -45,14 +67,19 @@ class TodoListTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         todoLabel.frame = CGRect(x: 10,
-                                 y: 0,
+                                 y: 5,
                                  width: contentView.frame.size.width - 170,
-                                 height: 70)
+                                 height: 60)
         
         subName.frame = CGRect(x: 10,
                                y: 70,
                                width: contentView.frame.size.width - 170,
                                height: contentView.frame.size.height/2)
+        
+        button.frame = CGRect(x: contentView.frame.size.width - 50,
+                              y: 15,
+                              width: 30,
+                              height: 40)
     }
     
     //prepar the cell for reuse
@@ -64,6 +91,6 @@ class TodoListTableViewCell: UITableViewCell {
     func configure(with viewModel: CellViewModel) {
         
         todoLabel.text = viewModel.name
-        subName.text = viewModel.subName
+        //subName.text = viewModel.subName
     }
 }
