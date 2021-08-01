@@ -27,6 +27,7 @@ class PostViewModel {
         }else {
             postInList(insertData: textField)
             viewController.dismiss(animated: true, completion: nil)
+         
         }
     }
     

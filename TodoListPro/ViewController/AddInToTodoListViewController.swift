@@ -11,18 +11,8 @@ class AddInToTodoListViewController: UIViewController,UITextFieldDelegate {
     
     lazy var viewModel = PostViewModel()
     let lab = UILabel()
-    
-    //    private let addLabel:UILabel = {
-    //        let label = UILabel()
-    //        label.font = .systemFont(ofSize: 20, weight: .bold)
-    //        label.backgroundColor = .white
-    //        label.textAlignment = .center
-    //        label.numberOfLines = 0
-    //        label.layer.cornerRadius = 52
-    //        //label.frame = CGRect(x: 5, y: 5, width: 100, height: 30)
-    //        return label
-    //    }()
-    
+ 
+
     private let addTextField: UITextField = {
         let tex = UITextField()
         tex.font = .systemFont(ofSize: 20)
@@ -51,10 +41,11 @@ class AddInToTodoListViewController: UIViewController,UITextFieldDelegate {
         createStackview(lab: addTextField, button: button)
         buttonTap()
         configration()
+        dismissButton()
     }
     func configration(){
         view.addSubview(lab)
-        lab.text = " this is for add in to todo list"
+        lab.text = "Here you can add into TodoList"
         lab.font = UIFont.boldSystemFont(ofSize: 36)
         lab.textAlignment = .center
         lab.numberOfLines = 0
@@ -63,7 +54,8 @@ class AddInToTodoListViewController: UIViewController,UITextFieldDelegate {
     }
     // Dismiss button
     func dismissButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: self, action: #selector(dissmis))
+        title = "Adding Data"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "<Back", style: .plain, target: self, action: #selector(dissmis))
     }
     @objc private func dissmis() {
         dismiss(animated: true, completion: nil)
@@ -83,7 +75,7 @@ class AddInToTodoListViewController: UIViewController,UITextFieldDelegate {
     func createStackview(lab:UITextField, button:UIButton) {
         let stackView = UIStackView(arrangedSubviews: [lab,button])
         view.addSubview(stackView)
-        stackView.frame = CGRect(x: 50, y: 200, width: UIScreen.main.bounds.width - 100, height: 150)
+        stackView.frame = CGRect(x: 50, y: 250, width: UIScreen.main.bounds.width - 100, height: 150)
         stackView.backgroundColor = .systemGray
         //config
         stackView.axis = .vertical
