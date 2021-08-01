@@ -29,4 +29,11 @@ class PostViewModel {
             viewController.dismiss(animated: true, completion: nil)
         }
     }
+    
+    func textFieldDidBingEding(textField addTextField: UITextField) {
+        if addTextField.textColor == UIColor.lightGray {
+            addTextField.text = nil
+            addTextField.textColor = UIColor.black
+        }
+    }
 }

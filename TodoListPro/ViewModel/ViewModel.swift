@@ -82,7 +82,13 @@ class TodoViewModel {
         let deleteTheString = String(last)
         return deleteTheString
     }
-    
+// for deleting one by one.
+    func forDeletOneByOne(indexPath: IndexPath, tableView: UITableView) {
+       let index = todoArray[indexPath.row].subName
+       let theDeletOpetion = takeIdFromUrl(at: index)
+       deleteFormList(the: theDeletOpetion)
+       todoArray.remove(at: indexPath.row)
+    }
 
 
     
