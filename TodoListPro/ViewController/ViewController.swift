@@ -9,18 +9,17 @@ import UIKit
 
 class ViewController: UIViewController{
     
-
-     lazy var viewModel = TodoViewModel()
-    let indicator = UIActivityIndicatorView(style: .large)
+    
+    lazy var viewModel = TodoViewModel()
     let refresh = UIRefreshControl()
-
+    let activityIndicator = UIActivityIndicatorView()
+    
     // Create TableView anonymus clouser patern here
     private let tableView: UITableView = {
         let table = UITableView()
-        
-        table.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.identifire)
+        table.register(TodoListTableViewCell.self,
+                       forCellReuseIdentifier: TodoListTableViewCell.identifire)
         return table
-        
     }()
     
     override func viewDidLoad() {
@@ -29,89 +28,99 @@ class ViewController: UIViewController{
         viewModel.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        activityIndecatorshow()
         view.backgroundColor = .systemBackground
         connection()
         buttonAdding()
-        forRefreshing()
         navigationConfig()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection()
+        forRefreshing()
     }
-
+    
     func navigationConfig() {
-        title = "List"
-        let nav = navigationController?.navigationBar
-        nav?.backgroundColor = .gray
+        viewModel.navigationConfig(nav: self)
     }
-
+    
+    func activityIndecatorshow() {
+        viewModel.activityIndicator(activity: activityIndicator,
+                                    view: view)
+    }
     
     func buttonAdding() {
-       let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+        let button = UIBarButtonItem(barButtonSystemItem: .add,
+                                     target: self,
+                                     action: #selector(addItem))
         navigationItem.rightBarButtonItems = [button]
-       // forRefreshing()
-
-    }
-    @objc func addItem() {
-        let vc = AddInToTodoListViewController()
-       // let navVC = UINavigationController(rootViewController: vc)
-        //navVC.modalPresentationStyle = .fullScreen
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
-    }
-    func forRefreshing() {
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(refres), for: .valueChanged)
-
-    }
-    @objc func refres() {
-        connection()
-        //viewModel.refresh(tableView: tableView)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            self.tableView.backgroundView = self.indicator
-//
-//            self.refresh.beginRefreshing()
-//            self.tableView.refreshControl?.endRefreshing()
-//            self.tableView.reloadData()
-//            self.connection()
-//        }
     }
     
+    @objc func addItem() {
+        viewModel.addItem(viewController: self)
+    }
+    
+    func forRefreshing() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self,
+                                            action: #selector(refres),
+                                            for: .valueChanged)
+    }
+    
+    @objc func refres() {
+        connection()
+    }
     // tableView Frame is here
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
     
-    
     func connection() {
         viewModel.fetchTodoList()
     }
 }
-
 //MARK:- EXTENSION
 extension ViewController: UITableViewDelegate,UITableViewDataSource, DoRefreshTable {
     
     func update() {
         DispatchQueue.main.async {
-            self.tableView.refreshControl?.endRefreshing()
-            self.tableView.reloadData()
+            self.viewModel.startActivity(activity: self.activityIndicator,
+                                         view: self.view)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0,
+                                              execute: {
+                    self.tableView.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                    self.viewModel.stopActivity(activity: self.activityIndicator,
+                                                view: self.view)
+                })
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.todoArray.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.identifire,for: indexPath) as? TodoListTableViewCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.identifire,
+                                                       for: indexPath) as? TodoListTableViewCell
+        else { fatalError()
+        }
         
         cell.configure(with: viewModel.todoArray[indexPath.row])
         
         cell.buttonTapCallBack = {
-            self.viewModel.forDeletOneByOne(indexPath: indexPath, tableView: tableView)
-            self.tableView.reloadData()
+            self.viewModel.startActivity(activity: self.activityIndicator,
+                                         view: self.view)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.viewModel.stopActivity(activity: self.activityIndicator,
+                                            view: self.view)
+                self.viewModel.forDeletOneByOne(indexPath: indexPath,
+                                                tableView: tableView)
+                self.tableView.reloadData()
+            }
         }
         return cell
     }
@@ -120,12 +129,21 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, DoRefreshTa
         return 70
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            self.viewModel.forDeletOneByOne(indexPath: indexPath, tableView: tableView)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.reloadData()
+            self.viewModel.startActivity(activity: self.activityIndicator,
+                                         view: self.view)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.viewModel.forDeletOneByOne(indexPath: indexPath,
+                                                tableView: tableView)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tableView.reloadData()
+                self.viewModel.stopActivity(activity: self.activityIndicator,
+                                            view: self.view)
+            }
         }
     }
-
 }

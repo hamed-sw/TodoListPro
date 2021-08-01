@@ -46,25 +46,20 @@ class TodoViewModel {
         }
     }
     
+
     
-   // Adding in to TodoList By Alertaction.
-//    func forAddingIntoTodoList(viewController: UIViewController) {
-//        let alert = UIAlertController(title: "In TodoList", message: "plesae add something you need!", preferredStyle: .alert)
-//        alert.addTextField { textField in
-//            textField.placeholder = " Enter in here...."
-//        }
-//        let action = UIAlertAction(title: "Add", style: .default) { _ in
-//            guard let addlist = alert.textFields?.first?.text else {
-//                return
-//            }
-//            //self.postInList(insertData: addlist)
-//        }
-//        alert.addAction(action)
-//        viewController.present(alert, animated: true)
-//    }
-    
-    
+    func navigationConfig(nav: UIViewController) {
+        nav.title = "List"
+        let nadv = nav.navigationController?.navigationBar
+        nadv?.backgroundColor = .gray
+    }
   
+    func addItem(viewController: UIViewController){
+        let vc = AddInToTodoListViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        viewController.present(navVC, animated: true)
+    }
     
      func refresh(tableView: UITableView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -90,6 +85,22 @@ class TodoViewModel {
        todoArray.remove(at: indexPath.row)
     }
 
+    func activityIndicator(activity: UIActivityIndicatorView, view: UIView) {
+        activity.center = view.center
+        activity.hidesWhenStopped = true
+        activity.style = .large
+        activity.color = UIColor.black
+        view.addSubview(activity)
+    }
+    
+    func startActivity(activity: UIActivityIndicatorView, view: UIView) {
+        activity.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    func stopActivity(activity: UIActivityIndicatorView, view: UIView) {
+        activity.stopAnimating()
+        view.isUserInteractionEnabled = true
+    }
 
     
   

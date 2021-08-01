@@ -12,13 +12,6 @@ class TodoListTableViewCell: UITableViewCell {
     // register our cell to the table
     static let identifire = "TodoListTableViewCell"
     var buttonTapCallBack: () -> () = {}
-//    let button: UIButton = {
-//         let btn = UIButton()
-//         btn.setTitle("Button", for: .normal)
-//         btn.backgroundColor = .systemPink
-//         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//         return btn
-//     }()
     
     // create Label for todoList
     private let todoLabel: UILabel = {
