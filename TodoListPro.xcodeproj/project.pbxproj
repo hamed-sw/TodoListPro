@@ -25,6 +25,10 @@
 		FAEF7C7826B027680077F97B /* AddInToTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */; };
 		FAEF7C7A26B5467F0077F97B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C7926B5467F0077F97B /* PostViewModel.swift */; };
 		FAEF7C8326B6E0790077F97B /* ExtraThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8226B6E0790077F97B /* ExtraThing.swift */; };
+		FAEF7C8626B704000077F97B /* Strackview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8526B704000077F97B /* Strackview.swift */; };
+		FAEF7C8826B706E60077F97B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8726B706E60077F97B /* Label.swift */; };
+		FAEF7C8A26B707270077F97B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8926B707270077F97B /* TextField.swift */; };
+		FAEF7C8C26B708760077F97B /* ButtonTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8B26B708760077F97B /* ButtonTap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		FAEF7C7726B027680077F97B /* AddInToTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInToTodoListViewController.swift; sourceTree = "<group>"; };
 		FAEF7C7926B5467F0077F97B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		FAEF7C8226B6E0790077F97B /* ExtraThing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraThing.swift; sourceTree = "<group>"; };
+		FAEF7C8526B704000077F97B /* Strackview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strackview.swift; sourceTree = "<group>"; };
+		FAEF7C8726B706E60077F97B /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		FAEF7C8926B707270077F97B /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		FAEF7C8B26B708760077F97B /* ButtonTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		FA869CA126A9E2B200C988E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAEF7C8426B703DB0077F97B /* Extra */,
 				FA869CAC26A9E34400C988E3 /* Model.swift */,
 			);
 			path = Model;
@@ -149,6 +158,17 @@
 				FA869CB326A9E77B00C988E3 /* Supporter.swift */,
 			);
 			path = Supporter;
+			sourceTree = "<group>";
+		};
+		FAEF7C8426B703DB0077F97B /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				FAEF7C8526B704000077F97B /* Strackview.swift */,
+				FAEF7C8726B706E60077F97B /* Label.swift */,
+				FAEF7C8926B707270077F97B /* TextField.swift */,
+				FAEF7C8B26B708760077F97B /* ButtonTap.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +254,11 @@
 				FA869CB226A9E6E000C988E3 /* Array+Extenstion.swift in Sources */,
 				FA869C8E26A9E28300C988E3 /* AppDelegate.swift in Sources */,
 				FAEF7C8326B6E0790077F97B /* ExtraThing.swift in Sources */,
+				FAEF7C8C26B708760077F97B /* ButtonTap.swift in Sources */,
 				FA869CA726A9E30400C988E3 /* ViewModel.swift in Sources */,
+				FAEF7C8826B706E60077F97B /* Label.swift in Sources */,
+				FAEF7C8A26B707270077F97B /* TextField.swift in Sources */,
+				FAEF7C8626B704000077F97B /* Strackview.swift in Sources */,
 				FA869C9026A9E28300C988E3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

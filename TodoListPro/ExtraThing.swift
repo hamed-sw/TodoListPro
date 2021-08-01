@@ -47,3 +47,24 @@ import Foundation
 //        alert.addAction(action)
 //        viewController.present(alert, animated: true)
 //    }
+
+
+//    private let addTextField: UITextField = {
+//        let tex = UITextField()
+//        tex.font = .systemFont(ofSize: 20)
+//        tex.backgroundColor = .white
+//        tex.textAlignment = .center
+//        tex.text = "Write here...!"
+//        tex.textColor = .lightGray
+//        return tex
+//    }()
+    
+//    private let button: UIButton = {
+//        let  butt = UIButton()
+//        butt.backgroundColor = .white
+//        butt.setTitle("add", for: .normal)
+//        butt.setTitleColor(.black, for: .normal)
+//        butt.layer.cornerRadius = 10
+//        butt.frame = CGRect(x: 100, y: 600, width: UIScreen.main.bounds.width - 200, height: 30)
+//        return butt
+//    }()
