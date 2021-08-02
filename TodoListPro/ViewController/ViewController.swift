@@ -13,6 +13,8 @@ class ViewController: UIViewController{
     lazy var viewModel = TodoViewModel()
     let refresh = UIRefreshControl()
     let activityIndicator = UIActivityIndicatorView()
+    let activityClass = AcitivityIndicator()
+    let navigationConfigration = NavigationConfigration()
     
     // Create TableView anonymus clouser patern here
     private let tableView: UITableView = {
@@ -42,11 +44,11 @@ class ViewController: UIViewController{
     }
     
     func navigationConfig() {
-        viewModel.navigationConfig(nav: self)
+        navigationConfigration.navigationConfig(nav: self)
     }
     
     func activityIndecatorshow() {
-        viewModel.activityIndicator(activity: activityIndicator,
+        activityClass.activityIndicator(activity: activityIndicator,
                                     view: view)
     }
     
@@ -58,7 +60,7 @@ class ViewController: UIViewController{
     }
     
     @objc func addItem() {
-        viewModel.addItem(viewController: self)
+        navigationConfigration.addItem(viewController: self)
     }
     
     func forRefreshing() {
@@ -86,13 +88,13 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, DoRefreshTa
     
     func update() {
         DispatchQueue.main.async {
-            self.viewModel.startActivity(activity: self.activityIndicator,
+            self.activityClass.startActivity(activity: self.activityIndicator,
                                          view: self.view)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0,
                                               execute: {
                     self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
-                    self.viewModel.stopActivity(activity: self.activityIndicator,
+                    self.activityClass.stopActivity(activity: self.activityIndicator,
                                                 view: self.view)
                 })
         }
@@ -112,10 +114,10 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, DoRefreshTa
         cell.configure(with: viewModel.todoArray[indexPath.row])
         
         cell.buttonTapCallBack = {
-            self.viewModel.startActivity(activity: self.activityIndicator,
+            self.activityClass.startActivity(activity: self.activityIndicator,
                                          view: self.view)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.viewModel.stopActivity(activity: self.activityIndicator,
+                self.activityClass.stopActivity(activity: self.activityIndicator,
                                             view: self.view)
                 self.viewModel.forDeletOneByOne(indexPath: indexPath,
                                                 tableView: tableView)
@@ -134,14 +136,14 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, DoRefreshTa
                    forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            self.viewModel.startActivity(activity: self.activityIndicator,
+            self.activityClass.startActivity(activity: self.activityIndicator,
                                          view: self.view)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.viewModel.forDeletOneByOne(indexPath: indexPath,
                                                 tableView: tableView)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.tableView.reloadData()
-                self.viewModel.stopActivity(activity: self.activityIndicator,
+                self.activityClass.stopActivity(activity: self.activityIndicator,
                                             view: self.view)
             }
         }

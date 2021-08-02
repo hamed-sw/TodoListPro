@@ -29,6 +29,7 @@
 		FAEF7C8826B706E60077F97B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8726B706E60077F97B /* Label.swift */; };
 		FAEF7C8A26B707270077F97B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8926B707270077F97B /* TextField.swift */; };
 		FAEF7C8C26B708760077F97B /* ButtonTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8B26B708760077F97B /* ButtonTap.swift */; };
+		FAEF7C8E26B80D290077F97B /* ExtraActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF7C8D26B80D290077F97B /* ExtraActivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		FAEF7C8726B706E60077F97B /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		FAEF7C8926B707270077F97B /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		FAEF7C8B26B708760077F97B /* ButtonTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTap.swift; sourceTree = "<group>"; };
+		FAEF7C8D26B80D290077F97B /* ExtraActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				FAEF7C8726B706E60077F97B /* Label.swift */,
 				FAEF7C8926B707270077F97B /* TextField.swift */,
 				FAEF7C8B26B708760077F97B /* ButtonTap.swift */,
+				FAEF7C8D26B80D290077F97B /* ExtraActivity.swift */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				FA869CAF26A9E3CD00C988E3 /* TodoListTableViewCell.swift in Sources */,
 				FA869CB426A9E77B00C988E3 /* Supporter.swift in Sources */,
 				FAEF7C7826B027680077F97B /* AddInToTodoListViewController.swift in Sources */,
+				FAEF7C8E26B80D290077F97B /* ExtraActivity.swift in Sources */,
 				FA869CB626A9E7B100C988E3 /* APIPost.swift in Sources */,
 				FAEF7C7A26B5467F0077F97B /* PostViewModel.swift in Sources */,
 				FA869C9226A9E28300C988E3 /* ViewController.swift in Sources */,
