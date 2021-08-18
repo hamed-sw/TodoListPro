@@ -15,3 +15,5 @@ class CellViewModel {
         self.subName = subName
     }
 }
+
+
